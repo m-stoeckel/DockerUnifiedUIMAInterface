@@ -517,7 +517,7 @@ public class DUUIDockerDriver implements IDUUIDriverInterface {
         private String _reg_password;
         private String _reg_username;
         private String _uniqueComponentKey;
-        private Map<String, String> _parameters;
+        private Map<String, Object> _parameters;
         private String _sourceView;
         private String _targetView;
         private DUUIPipelineComponent _component;
@@ -621,7 +621,7 @@ public class DUUIDockerDriver implements IDUUIDriverInterface {
             return _instances;
         }
 
-        public Map<String, String> getParameters() {
+        public Map<String, Object> getParameters() {
             return _parameters;
         }
 

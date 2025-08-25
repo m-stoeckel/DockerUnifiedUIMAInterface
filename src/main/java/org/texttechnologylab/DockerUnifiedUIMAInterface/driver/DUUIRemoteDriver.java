@@ -197,7 +197,7 @@ public class DUUIRemoteDriver implements IDUUIDriverInterface {
         private int _maximum_concurrency;
         private ConcurrentLinkedQueue<ComponentInstance> _components;
         private String _uniqueComponentKey;
-        private Map<String, String> _parameters;
+        private Map<String, Object> _parameters;
         private String _sourceView;
         private String _targetView;
         private DUUIPipelineComponent _component;
@@ -258,7 +258,7 @@ public class DUUIRemoteDriver implements IDUUIDriverInterface {
             return _urls;
         }
 
-        public Map<String, String> getParameters() {
+        public Map<String, Object> getParameters() {
             return _parameters;
         }
 

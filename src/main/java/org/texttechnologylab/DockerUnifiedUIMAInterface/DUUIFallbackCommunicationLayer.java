@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DUUIFallbackCommunicationLayer implements IDUUICommunicationLayer {
-    public void serialize(JCas jc, ByteArrayOutputStream out, Map<String,String> parameters, String sourceView) throws CommunicationLayerException, CASException {
+    public void serialize(JCas jc, ByteArrayOutputStream out, Map<String, Object> parameters, String sourceView) throws CommunicationLayerException, CASException {
         try {
             JSONObject obj = new JSONObject();
             ByteArrayOutputStream arr = new ByteArrayOutputStream();
@@ -61,7 +61,7 @@ public class DUUIFallbackCommunicationLayer implements IDUUICommunicationLayer {
     }
 
     @Override
-    public void serialize(JCas jc, ByteArrayOutputStream out, Map<String, String> parameters) throws CommunicationLayerException, CASException {
+    public void serialize(JCas jc, ByteArrayOutputStream out, Map<String, Object> parameters) throws CommunicationLayerException, CASException {
         serialize(jc, out, parameters, "_InitialView");
     }
 
@@ -71,7 +71,7 @@ public class DUUIFallbackCommunicationLayer implements IDUUICommunicationLayer {
     }
 
     @Override
-    public void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, String> parameters, JCas targetCas) throws CommunicationLayerException, CASException {
+    public void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, Object> parameters, JCas targetCas) throws CommunicationLayerException, CASException {
         throw new UnsupportedOperationException();
     }
 

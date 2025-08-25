@@ -37,7 +37,7 @@ public class DUUILuaCommunicationLayer implements IDUUICommunicationLayer {
     }
 
     @Override
-    public void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, String> parameters) throws CommunicationLayerException, CASException {
+    public void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, Object> parameters) throws CommunicationLayerException, CASException {
         try {
             _file.call(
                     "process",
@@ -51,7 +51,7 @@ public class DUUILuaCommunicationLayer implements IDUUICommunicationLayer {
     }
 
     @Override
-    public void process(JCas sourceCas, DUUIHttpRequestHandler handler, Map<String, String> parameters, JCas targetCas) throws CommunicationLayerException, CASException {
+    public void process(JCas sourceCas, DUUIHttpRequestHandler handler, Map<String, Object> parameters, JCas targetCas) throws CommunicationLayerException, CASException {
         try {
             _file.call(
                     "process",
@@ -78,7 +78,7 @@ public class DUUILuaCommunicationLayer implements IDUUICommunicationLayer {
         );
     }
 
-    public void serialize(JCas jc, ByteArrayOutputStream out, Map<String, String> parameters, String sourceView) throws CommunicationLayerException, CASException {
+    public void serialize(JCas jc, ByteArrayOutputStream out, Map<String, Object> parameters, String sourceView) throws CommunicationLayerException, CASException {
         LuaTable params = createLuaTableFromParameters(parameters);
 
         try {
@@ -127,11 +127,11 @@ public class DUUILuaCommunicationLayer implements IDUUICommunicationLayer {
     }
 
 
-    private static LuaTable createLuaTableFromParameters(Map<String, String> parameters) {
+    private static LuaTable createLuaTableFromParameters(Map<String, Object> parameters) {
         LuaTable params = new LuaTable();
         if (parameters != null) {
             for (String key : parameters.keySet()) {
-                params.set(key, parameters.get(key));
+                params.set(key, CoerceJavaToLua.coerce(parameters.get(key)));
             }
         }
         return params;

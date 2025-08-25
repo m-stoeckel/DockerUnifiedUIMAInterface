@@ -455,7 +455,7 @@ public class DUUIKubernetesDriver implements IDUUIDriverInterface {
         private boolean _keep_running_after_exit;
         private int _scale;
         private boolean _withImageFetching;
-        private Map<String, String> _parameters;
+        private Map<String, Object> _parameters;
         private String _sourceView;
         private String _targetView;
         private DUUIPipelineComponent _component;
@@ -540,7 +540,7 @@ public class DUUIKubernetesDriver implements IDUUIDriverInterface {
         }
 
         @Override
-        public Map<String, String> getParameters() {
+        public Map<String, Object> getParameters() {
             return _parameters;
         }
 

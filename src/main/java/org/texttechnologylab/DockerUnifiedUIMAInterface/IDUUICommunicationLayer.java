@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public interface IDUUICommunicationLayer {
 
-  public void serialize(JCas jc, ByteArrayOutputStream out, Map<String,String> parameters, String sourceView) throws CommunicationLayerException, CASException;
+  public void serialize(JCas jc, ByteArrayOutputStream out, Map<String, Object> parameters, String sourceView) throws CommunicationLayerException, CASException;
 
   /**
    * Serializes a JCas to a byte array output stream by using the LUA script provided by the component.
@@ -32,7 +32,7 @@ public interface IDUUICommunicationLayer {
    * @throws CommunicationLayerException
    * @throws CASException
    */
-  default void serialize(JCas jc, ByteArrayOutputStream out, Map<String,String> parameters) throws CommunicationLayerException, CASException {
+  default void serialize(JCas jc, ByteArrayOutputStream out, Map<String, Object> parameters) throws CommunicationLayerException, CASException {
       serialize(jc, out, parameters, "_InitialView");
   }
 
@@ -48,11 +48,11 @@ public interface IDUUICommunicationLayer {
   default void deserialize(JCas jc, ByteArrayInputStream input) throws CommunicationLayerException, CASException {
     deserialize(jc, input, "_InitialView");
   }
-  default void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, String> parameters) throws CommunicationLayerException, CASException {
+  default void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, Object> parameters) throws CommunicationLayerException, CASException {
     process(jCas, handler, parameters, jCas);
   }
 
-  public void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, String> parameters, JCas targetCas) throws CommunicationLayerException, CASException;
+  public void process(JCas jCas, DUUIHttpRequestHandler handler, Map<String, Object> parameters, JCas targetCas) throws CommunicationLayerException, CASException;
 
   public boolean supportsProcess();
 

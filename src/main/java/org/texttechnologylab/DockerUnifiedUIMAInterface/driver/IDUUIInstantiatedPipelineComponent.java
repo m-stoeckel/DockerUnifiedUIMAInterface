@@ -44,7 +44,7 @@ public interface IDUUIInstantiatedPipelineComponent {
     public Triplet<IDUUIUrlAccessible,Long,Long> getComponent();
     public void addComponent(IDUUIUrlAccessible item);
 
-    public Map<String,String> getParameters();
+    public Map<String, Object> getParameters();
     public String getSourceView();
     public String getTargetView();
     public String getUniqueComponentKey();

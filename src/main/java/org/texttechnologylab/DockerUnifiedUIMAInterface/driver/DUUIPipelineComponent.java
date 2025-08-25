@@ -29,7 +29,7 @@ import java.util.*;
  */
 public class DUUIPipelineComponent {
     private HashMap<String, String> _options;
-    private HashMap<String,String> _parameters;
+    private HashMap<String, Object> _parameters;
 
     private AnalysisEngineDescription _engine;
     private String _finalizedEncoded;
@@ -533,8 +533,8 @@ public class DUUIPipelineComponent {
                 .withParameter(websocketElementsOptionName, String.valueOf(elements));
     }
 
-    public DUUIPipelineComponent withParameter(String key, String value) {
-        _parameters.put(key,value);
+    public DUUIPipelineComponent withParameter(String key, Object value) {
+        _parameters.put(key, value);
         return this;
     }
 
@@ -556,7 +556,7 @@ public class DUUIPipelineComponent {
     }
 
     public DUUIPipelineComponent withTimeout(long lLong) {
-        _parameters.put(timeout, String.valueOf(lLong));
+        _parameters.put(timeout, lLong);
         return this;
     }
 
@@ -570,11 +570,11 @@ public class DUUIPipelineComponent {
             optionsMap.put(key,options.getString(key));
         }
 
-        HashMap<String,String> parametersMap = new HashMap<>();
+        HashMap<String, Object> parametersMap = new HashMap<>();
         JSONObject parameters = jobj.getJSONObject("parameters");
         for (Iterator<String> it = parameters.keys(); it.hasNext(); ) {
             String key = it.next();
-            parametersMap.put(key,parameters.getString(key));
+            parametersMap.put(key, parameters.get(key));
         }
 
         DUUIPipelineComponent comp = new DUUIPipelineComponent();
@@ -629,7 +629,7 @@ public class DUUIPipelineComponent {
         return this;
     }
 
-    public final Map<String,String> getParameters() {
+    public final Map<String, Object> getParameters() {
         return _parameters;
     }
 
@@ -708,7 +708,7 @@ public class DUUIPipelineComponent {
     }
 
     public long getTimeout() {
-        return Long.valueOf(_parameters.getOrDefault(timeout, "60"));
+        return (long) _parameters.getOrDefault(timeout, 60L);
     }
 
 }

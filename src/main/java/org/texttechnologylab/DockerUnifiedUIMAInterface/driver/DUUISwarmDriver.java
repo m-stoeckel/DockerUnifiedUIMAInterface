@@ -293,7 +293,7 @@ public class DUUISwarmDriver implements IDUUIDriverInterface {
 
         private final String _reg_password;
         private final String _reg_username;
-        private final Map<String, String> _parameters;
+        private final Map<String, Object> _parameters;
         private String _sourceView;
         private String _targetView;
         private DUUIPipelineComponent _component;
@@ -414,7 +414,7 @@ public class DUUISwarmDriver implements IDUUIDriverInterface {
             return _keep_runnging_after_exit;
         }
 
-        public Map<String, String> getParameters() {
+        public Map<String, Object> getParameters() {
             return _parameters;
         }
 
